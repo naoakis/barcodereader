@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
+</head>
+
+<body>
+    <div id="interactive" class="viewport"></div>
+
+    <input type="button" value="start" onclick="scan()">
+    <input type="button" value="stop" onclick="stop()">
+
+
+</body>
+
+<script>
+
+    function scan() {
+
+        Quagga.init({
+            inputStream: {
+                type: "LiveStream",
+                constraints: {
+                    width: { min: 640 },
+                    height: { min: 480 },
+                    aspectRatio: { min: 1, max: 100 },
+                    facingMode: "environment" // or user
+                }
+            },
+            locator: {
+                patchSize: "medium",
+                halfSample: true
+            },
+            numOfWorkers: 2,
+            frequency: 10,
+            decoder: {
+                readers: [{
+                    format: "code_128_reader",
+                    config: {}
+                }]
+            },
+            locate: true
+        }, (err) => {
+            if (!err) {
+                console.info("Initialization finished. Ready to start");
+                Quagga.start();
+            } else {
+                console.log(err);
+                return
+            }
+        })
+    }
+
+    Quagga.onDetected(function (result) {
+        var code = result.codeResult.code;
+        alert(code);
+
+    });
+
+    function stop() {
+        Quagga.stop()
+    }
+
+
+</script>
+
+</html>
