@@ -10,11 +10,10 @@
 </head>
 
 <body>
-    <div id="interactive" class="viewport"></div>
+    <div id="interactive" class="viewport interactive"></div>
 
     <input type="button" value="start" onclick="scan()">
     <input type="button" value="stop" onclick="stop()">
-
 
 </body>
 
@@ -26,9 +25,7 @@
             inputStream: {
                 type: "LiveStream",
                 constraints: {
-                    width: { min: 640 },
-                    height: { min: 480 },
-                    aspectRatio: { min: 1, max: 100 },
+                    area: { top: "30%", right: "0%", left: "0%", bottom: "30%" },
                     facingMode: "environment" // or user
                 }
             },
@@ -67,5 +64,18 @@
 
 
 </script>
+<style>
+    .interactive {
+        overflow: hidden;
+        height: 300px;
+        width: 300px;
+    }
+    #interactive > video,
+    #interactive > canvas {
+        margin-top: -50px;
+        width: 300px;
+        height: 400px;
+    }
+</style>
 
 </html>
