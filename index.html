@@ -25,7 +25,9 @@
             inputStream: {
                 type: "LiveStream",
                 constraints: {
-                    area: { top: "30%", right: "0%", left: "0%", bottom: "30%" },
+                    width: {min: 640},
+                    height: {min: 480},
+                    aspectRatio: {min: 1, max: 100},
                     facingMode: "environment" // or user
                 }
             },
