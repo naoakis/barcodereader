@@ -1,0 +1,16 @@
+{
+  "name": "barcodeReader",
+  "short_name": "barcodeReader",
+  "theme_color": "#eeeeee",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "Scope": "/",
+  "start_url": "/index.html",
+  "icons": [
+    {
+      "src": "img/bcd.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+ }
